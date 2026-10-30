@@ -1,8 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders learn react link", () => {
+// fetch never resolves here, so the pages just sit on loading
+beforeEach(() => {
+  global.fetch = jest.fn(() => new Promise(() => {}));
+});
+
+test("renders the nav bar", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/all pets/i)).toBeInTheDocument();
 });

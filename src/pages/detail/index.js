@@ -36,7 +36,8 @@ const PetDetailsPage = () => {
       ) : error ? (
         <div>
           {/* Redirect to /pet-details-not-found if there was an error! */}
-          <Navigate to="/pet-details-not-found" />
+          {/* replace so the back button skips this page instead of redirecting again */}
+          <Navigate to="/pet-details-not-found" replace />
         </div>
       ) : (
         <main>
@@ -52,6 +53,12 @@ const PetDetailsPage = () => {
                   data.photos[0]?.medium || "https://i.imgur.com/aEcJUFK.png"
                 }
                 alt=""
+                // old petfinder photo links are dead, so swap in the placeholder
+                onError={(e) => {
+                  if (!e.currentTarget.src.endsWith("/missing-animal.png")) {
+                    e.currentTarget.src = "/missing-animal.png";
+                  }
+                }}
               />
             </div>
             <div>

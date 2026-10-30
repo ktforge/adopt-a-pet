@@ -36,6 +36,8 @@ Redirecting also comes in two flavors. The details page renders a Navigate compo
 
 Most of my bugs were typos. I wrote 'react=router-dom' with an equals sign and the whole page broke with "Module not found." I also wrote Navlink with a lowercase L, and JSX treated it as a component that doesn't exist. Another time I put the useSearchParams import in the search bar file instead of the search page, because both folders are named search.
 
+After it was live I found two more bugs. Pressing Back on the 404 page sent me straight back to the 404 page, because Back landed on the broken pet's URL and that redirected again. Adding replace to the Navigate swaps the broken URL out of the history, so Back goes home instead. The other one was the pet photos: the starter data links to old Petfinder images that don't exist anymore, so I added an onError that swaps in the placeholder picture.
+
 For Netlify I had to add a public/_redirects file. Without it, refreshing on a page like /dog asks Netlify for a file that isn't there and you get a 404.
 
 Built by DeVante Bush

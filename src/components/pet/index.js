@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Pet = ({ animal }) => {
   return (
-    <a
+    <Link
       key={animal.id}
-      href={`/${animal.type.toLowerCase()}/${animal.id}`}
+      to={`/${animal.type.toLowerCase()}/${animal.id}`}
       className="pet"
     >
       <article>
@@ -17,6 +18,12 @@ const Pet = ({ animal }) => {
                 "https://static-assets.codecademy.com/Dog_image.png"
               }
               alt=""
+              // old petfinder photo links are dead, so swap in the placeholder
+              onError={(e) => {
+                if (!e.currentTarget.src.endsWith("/missing-animal.png")) {
+                  e.currentTarget.src = "/missing-animal.png";
+                }
+              }}
             />
           }
         </div>
@@ -25,7 +32,7 @@ const Pet = ({ animal }) => {
         <p>Color: {animal.colors.primary}</p>
         <p>Gender: {animal.gender}</p>
       </article>
-    </a>
+    </Link>
   );
 };
 

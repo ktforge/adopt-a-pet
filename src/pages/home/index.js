@@ -48,6 +48,14 @@ const HomePage = () => {
                       className="pet-image"
                       src={animal.photos[0]?.medium || "/missing-animal.png"}
                       alt=""
+                      // old petfinder photo links are dead, so swap in the placeholder
+                      onError={(e) => {
+                        if (
+                          !e.currentTarget.src.endsWith("/missing-animal.png")
+                        ) {
+                          e.currentTarget.src = "/missing-animal.png";
+                        }
+                      }}
                     />
                   }
                 </div>

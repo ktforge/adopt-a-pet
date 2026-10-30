@@ -8,7 +8,7 @@ const Hero = ({ image, displayText }) => {
       className="hero-container"
       style={{
         backgroundImage: `linear-gradient(black, black), url("${
-          image || "pets-hero.png"
+          image || "/pets-hero.png"
         }")
           `,
         backgroundBlendMode: "saturation",
